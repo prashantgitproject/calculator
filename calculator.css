@@ -1,45 +1,76 @@
-.col{
+body{
+    background-color: rgb(56, 56, 56);
+}
+.bodyLight{
+    background-color: rgb(255, 255, 255);
+}
+.screen{
+    background-color: rgb(18, 18, 18);
+    color: rgb(255, 255, 255);
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.screen:hover{
+    background-color: rgb(32, 32, 32);
+}
+.screenLight{
+    background-color: rgb(221, 221, 221);
+    color: rgb(0, 0, 0); 
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.screenLight:hover{
+    background-color: rgb(206, 206, 206);
+}
+
+.input{
+    text-align: end;
+    
+    background-color: rgb(18, 18, 18);
+    border: none;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.input:hover{
+    background-color: rgb(32, 32, 32); 
+}
+.inputLight{
+    background-color: rgb(221, 221, 221);
+    color: black;   
+}
+.inputLight:hover{
+    background-color: rgb(206, 206, 206);   
+}
+.cell{
     height: 40px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
     background-color: rgb(33, 33, 33);
     color: rgb(255, 255, 255);
+    border: 2px solid white;
 }
-body{
-    background-color: rgb(56, 56, 56);
+.cell:hover{
+    background-color: rgb(188, 188, 188);
 }
-.screen{
-    background-color: rgb(18, 18, 18);
-    color: rgb(255, 255, 255);
-}
-.screen:hover{
-    background-color: rgb(76, 76, 76);
-}
-.screenDark{
-    background-color: rgb(0 40 78);
-    color: rgb(255, 255, 255); 
-}
-.screenDark:hover{
-    background-color: rgb(0, 83, 151);
-}
-.col:hover{
-    background-color: rgb(87, 87, 87);
-}
-.colDark{
+.cellLight{
     height: 40px;
     border-radius: 5px;
+    border: 2px solid black;
     cursor: pointer;
-    background-color: rgb(0 40 78);
-    color: rgb(255, 255, 255);
+    background-color: rgb(228, 228, 228);
+    color: rgb(0, 0, 0);
     font-size: 20px;
+    border: 2px solid black
 }
 
-.colDark:hover{
-    background-color: rgb(0 77 138);
+.cellLight:hover{
+    background-color: rgb(179, 179, 179);
 }
 
-
-.body{
-    background-color: rgb(0, 57, 107);
+.del{
+    width: 58px;
+    border-radius: 5px;
 }
