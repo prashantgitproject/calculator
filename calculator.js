@@ -39,16 +39,20 @@ const insert=(num)=>{
 
 //––––––––––Inserting operations into screen–––––––––––––––––––
 let operation = document.getElementsByClassName("operation");
-// let operationValue = false;
   for(let i=0; i<operation.length; i++){
     operation[i].addEventListener("click", function(){
-      console.log("operation "+ i + " clicked");
+      // console.log("operation "+ i + " clicked");
       let start = input.selectionStart
       let end = input.selectionEnd
       let text = input.value
       let before = text.substring(0, start)
       let after  = text.substring(end, text.length)
-      input.value = (before + operation[i].textContent + after) 
+      if(text == "NaN" || text == ""){
+        input.value = ("0" + operation[i].textContent + after)
+      }
+      else{
+        input.value = (before + operation[i].textContent + after) 
+      }
     })
   }
   
@@ -102,6 +106,7 @@ const equal=()=>{
   input.value = input.value.replaceAll("π", "Math.PI");
   let values = input.value.replaceAll("÷", "/");
   result = Function("return " + values)();
+  // result = evaluate(values)
   return input.value = result;
 }
 
@@ -117,7 +122,7 @@ const clearEntry=()=>{
   let text = input.value
   let before = text.substring(0, start)
   let after  = text.substring(end, text.length)
-  newBefore = input.value.substring(0, before.length-1);
+  let newBefore = input.value.substring(0, before.length-1);
   input.value = (newBefore + after);
   console.log(input.value)
   // input.focus()
