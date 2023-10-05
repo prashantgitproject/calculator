@@ -54,7 +54,7 @@ let operation = document.getElementsByClassName("operation");
         input.value = (before + operation[i].textContent + after) 
       }
     })
-  }
+  } 
   
 
 
@@ -94,13 +94,19 @@ const espFunc=(func)=>{
 }
 
 // ––––––––––Calculating Value–––––––––––
-const equal=()=>{
+const equal= ()=>{
+  input.value = input.value.replaceAll("Ans", result);
+  if(input.value == ""){
+    return input.value = "NaN"
+  }
+  else if (input.value.match(/\d+!/g)){
+    FacNew();
+  }
   input.value = input.value.replaceAll("×", "*");
   input.value = input.value.replaceAll("%", "*0.01");
   input.value = input.value.replaceAll("√", "sqRoot");
   input.value = input.value.replaceAll("θ=", "(π/180)*");
   input.value = input.value.replaceAll("e^(", "Exp(");
-  input.value = input.value.replaceAll("Ans", ans);
 
   input.value = input.value.replaceAll("e", "Math.E");
   input.value = input.value.replaceAll("π", "Math.PI");
@@ -124,7 +130,7 @@ const clearEntry=()=>{
   let after  = text.substring(end, text.length)
   let newBefore = input.value.substring(0, before.length-1);
   input.value = (newBefore + after);
-  console.log(input.value)
+  // console.log(input.value)
   // input.focus()
   input.selectionStart = input.selectionEnd = before.length -1
 }
@@ -142,63 +148,76 @@ const inBracket=()=>{
 //log function
 const log=(x)=>{
   let logValue =  Math.log10(x);
-  return input.value = logValue
+  return logValue
 }
 
 //ln function
 const ln=(x)=>{
   let lnValue =  Math.log(x);
-  return input.value = lnValue
+  return  lnValue
 }
 
 //Root function
 const sqRoot=(x)=>{
   let Value =  Math.sqrt(x);
-  return input.value = Value
+  return  Value
 }
 
 //sin function
 const sin=(x)=>{
   let Value =  Math.sin(x);
-  return input.value = Value
+  return  Value
 }
 
 //cos function
 const cos=(x)=>{
   let Value =  Math.cos(x);
-  return input.value = Value
+  return  Value
 }
 
 //tan function
 const tan=(x)=>{
   let Value =  Math.tan(x);
-  return input.value = Value
+  return  Value
 }
 
 //exp function
 const Exp=(x)=>{
   let Value =  Math.exp(x);
-  return input.value = Value
+  return  Value
 }
 
 //power function
 const Pow=(x, y)=>{
   let Value =  Math.pow(x, y);
-  return input.value = Value
+  return  Value
 }
 
 //Factorial function
-const Fac=(x)=>{
-  let ans1 = x
-  if(ans1 == 0){
-    ans1 = 1
-  }
-  else{
-  for(let i=0; i<x-1; i++){
-    ans1 += ans1 * i
-  }
+const Fac=(num)=>{
+  if (num === 0 || num === 1)
+  return 1;
+for (let i = num - 1; i >= 1; i--) {
+  num *= i;
 }
-return input.value = ans1
+return num;
+}
+// –––––––––––Calculating factorial by ! notation––––––––
+const FacNew=()=>{
+let numWithFac = input.value.match(/\d+!/g);
+
+  let numWithoutFac = numWithFac.map((x)=>{
+    return parseInt(x);
+  }) 
+
+  let numWithoutFacResult = numWithoutFac.map((x)=>{
+    return Fac(x);
+  })
+  
+for(let i=0; i<numWithoutFacResult.length; i++){
+ input.value = input.value.replaceAll(numWithFac[i], numWithoutFacResult[i].toString());
+}
+return input.value
 }
 
 
@@ -215,8 +234,8 @@ if(input.value == sessionValue){
   equalClicked = true;
 }
 else{
-  console.log(sessionValue)
-  console.log("error")
+  // console.log(sessionValue)
+  console.log("Session value is not stored")
 }
 })
 
