@@ -84,3 +84,6 @@ body{
 .equal:hover{
     background-color: #4fdfdf;
 }
+.textDisable{
+    color: rgb(160 160 160);
+}

@@ -1,6 +1,8 @@
 let cell = document.getElementsByClassName("cell");
 let darkmode = document.getElementById("lightmode");
-// –––––––––––Enabling Light Mode––––––––––––––––
+
+//                                 –––––––––––Enabling Light Mode––––––––––––––––
+
 darkmode.addEventListener("click", function(){
     document.getElementsByTagName("body")[0].classList.toggle("bodyLight");
     document.getElementsByClassName("screen")[0].classList.toggle("screenLight");
@@ -16,7 +18,8 @@ let result;
 let equalClicked = false;
 
 
-// ––––––––––Inserting numbers into screen–––––––––––––
+//                              ––––––––––Inserting numbers into screen–––––––––––––
+
 const insert=(num)=>{
   let start = input.selectionStart
   let end = input.selectionEnd
@@ -37,7 +40,8 @@ const insert=(num)=>{
   // input.focus()
 };
 
-//––––––––––Inserting operations into screen–––––––––––––––––––
+//                           ––––––––––Inserting operations into screen–––––––––––––––––––
+
 let operation = document.getElementsByClassName("operation");
   for(let i=0; i<operation.length; i++){
     operation[i].addEventListener("click", function(){
@@ -58,7 +62,8 @@ let operation = document.getElementsByClassName("operation");
   
 
 
-//––––––––––Inserting number in especial functions like log, sin, tan–––––––––––––
+//                      ––––––––––Inserting number in especial functions like log, sin, tan–––––––––––––
+
 const espFunc=(func)=>{
   if(func == "log"){
     insert("log()")
@@ -93,35 +98,49 @@ const espFunc=(func)=>{
   inBracket()
 }
 
-// ––––––––––Calculating Value–––––––––––
-const equal= ()=>{
-  input.value = input.value.replaceAll("Ans", result);
-  if(input.value == ""){
-    return input.value = "NaN"
-  }
-  else if (input.value.match(/\d+!/g)){
-    FacNew();
-  }
-  input.value = input.value.replaceAll("×", "*");
-  input.value = input.value.replaceAll("%", "*0.01");
-  input.value = input.value.replaceAll("√", "sqRoot");
-  input.value = input.value.replaceAll("θ=", "(π/180)*");
-  input.value = input.value.replaceAll("e^(", "Exp(");
+//                                          ––––––––––Calculating Value–––––––––––
 
-  input.value = input.value.replaceAll("e", "Math.E");
-  input.value = input.value.replaceAll("π", "Math.PI");
-  let values = input.value.replaceAll("÷", "/");
-  result = Function("return " + values)();
-  // result = evaluate(values)
-  return input.value = result;
+const equal= ()=>{
+  try {
+    input.value = input.value.replaceAll("Ans", result);
+    if(input.value == ""){
+      return input.value = "NaN"
+    }
+    else if (input.value.match(/\d+!/g)){
+      FacNew();
+    };
+    if(input.value.match(/[s/t/c][i/a/o][n/s]/g)){
+      angleValue();
+    }
+    input.value = input.value.replaceAll("×", "*");
+    input.value = input.value.replaceAll("^", "**");
+    input.value = input.value.replaceAll("%", "*0.01");
+    input.value = input.value.replaceAll("√", "sqRoot");
+    // input.value = input.value.replaceAll("θ=", "(π/180)*");
+    input.value = input.value.replaceAll("e^(", "Exp(");
+  
+    input.value = input.value.replaceAll("e", "Math.E");
+    input.value = input.value.replaceAll("π", "Math.PI");
+    let values = input.value.replaceAll("÷", "/");
+    result = Function("return " + values)();
+    // result = evaluate(values)
+    return input.value = result;
+    
+  } catch (err) {
+    console.log(err)
+   return input.value = "Error!!" 
+  }
+ 
 }
 
-// –––––Clearing All Content–––––––
+//                                        –––––Clearing All Content–––––––
+
 const allClear=()=>{
   return input.value = ""
 }
 
-// –––––––Clearing Entry––––––––––
+//                                       –––––––Clearing Entry––––––––––
+
 const clearEntry=()=>{
   let start = input.selectionStart
   let end = input.selectionEnd
@@ -135,15 +154,16 @@ const clearEntry=()=>{
   input.selectionStart = input.selectionEnd = before.length -1
 }
 
-// –––––––––Taking text cursor inside bracket––––––––––
+//                               –––––––––Taking text cursor inside bracket––––––––––
+
 const inBracket=()=>{
   let pos = input.value.length - 1;
-    input.focus();
+    // input.focus();
     input.setSelectionRange(pos, pos);
   }
 
 
-// ––––DEFINING VARIOUS FUNCTIONS!–––––
+//                                     ––––DEFINING VARIOUS FUNCTIONS!–––––
 
 //log function
 const log=(x)=>{
@@ -187,12 +207,6 @@ const Exp=(x)=>{
   return  Value
 }
 
-//power function
-const Pow=(x, y)=>{
-  let Value =  Math.pow(x, y);
-  return  Value
-}
-
 //Factorial function
 const Fac=(num)=>{
   if (num === 0 || num === 1)
@@ -202,7 +216,9 @@ for (let i = num - 1; i >= 1; i--) {
 }
 return num;
 }
-// –––––––––––Calculating factorial by ! notation––––––––
+
+//                              –––––––––––Calculating factorial by ! notation––––––––
+
 const FacNew=()=>{
 let numWithFac = input.value.match(/\d+!/g);
 
@@ -222,7 +238,8 @@ return input.value
 
 
 
-// –––––––––-Session storage of the result–––––––––––––––
+//                               –––––––––-Session storage of the result–––––––––––––––
+
 let eql = document.getElementsByClassName("equal")[0]
 eql.addEventListener("click", function(){
 
@@ -230,7 +247,7 @@ let sessionValue = result;
 if(input.value == sessionValue){
   sessionStorage.removeItem("ans")
   sessionStorage.setItem("ans", sessionValue)
-  console.log("ans stored = " + sessionValue)
+  // console.log("ans stored = " + sessionValue)
   equalClicked = true;
 }
 else{
@@ -243,4 +260,29 @@ const ans=()=>{
   let ans = sessionStorage.getItem("ans");
   insert("Ans");
   return ans
+}
+
+//                      ––––––––––––Radian and degree–––––––––––––––
+
+const angleChange=()=>{
+  let rad = document.getElementById("radian");
+  let deg = document.getElementById("degree");
+  let angle = document.getElementsByClassName("angle");
+  for(let i=0; i<angle.length; i++){
+    angle[i].classList.toggle("textDisable");
+  }
+}
+
+const angleValue=()=>{
+  let rad = document.getElementById("radian");
+  let deg = document.getElementById("degree");
+  if(deg.classList.contains("textDisable")){
+   return input.value = input.value.replaceAll("θ=", "(π/180)*");
+  }
+  if(rad.classList.contains("textDisable")){
+   return input.value = input.value.replaceAll("θ=", "");
+  }
+  else{
+   return input.value = "error"
+  }
 }
