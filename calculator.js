@@ -77,6 +77,16 @@ const espFunc=(func)=>{
   else if(func == "cos"){
     insert("cos(θ=)")
   }
+  else if(func == "sinInv"){
+   
+    insert("sin-1()")
+  }
+  else if(func == "cosInv"){
+    insert("cosInv(θ=)")
+  }
+  else if(func == "tanInv"){
+    insert("tanInv(θ=)")
+  }
   else if(func == "ln"){
     insert("ln()")
   }
@@ -103,13 +113,17 @@ const espFunc=(func)=>{
 const equal= ()=>{
   try {
     input.value = input.value.replaceAll("Ans", result);
+    input.value = input.value.replaceAll("-1(", "Inv(");
+    console.log(input.value)
+
     if(input.value == ""){
       return input.value = "NaN"
     }
     else if (input.value.match(/\d+!/g)){
+
       FacNew();
     };
-    if(input.value.match(/[s/t/c][i/a/o][n/s]/g)){
+    if(input.value.match(/[s/t/c][i/a/o][n/s][(]/g)){
       angleValue();
     }
     input.value = input.value.replaceAll("×", "*");
@@ -201,6 +215,24 @@ const tan=(x)=>{
   return  Value
 }
 
+//inv sin function
+const sinInv=(x)=>{
+  let Value =  Math.asin(x);
+  return  Value
+}
+
+//inv cos function
+const cosInv=(x)=>{
+  let Value =  Math.acos(x);
+  return  Value
+}
+
+//inv tan function
+const tanInv=(x)=>{
+  let Value =  Math.atan(x);
+  return  Value
+}
+
 //exp function
 const Exp=(x)=>{
   let Value =  Math.exp(x);
@@ -285,4 +317,24 @@ const angleValue=()=>{
   else{
    return input.value = "error"
   }
+}
+
+//                         ––––––––––––––––––––Inverse function–––––––––––––––––
+
+let inv = document.getElementsByClassName("inv");
+let inverse = document.getElementById("inverse");
+const invFunc=()=>{
+  inverse.classList.toggle("inverse")
+    if(inv[0].textContent.includes("-1")){
+    inv[0].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('sin')">sin</div>` 
+    inv[1].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('cos')">cos</div>` 
+    inv[2].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('tan')">tan</div>` 
+    }
+    else{ 
+    inv[0].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('sinInv')">sin<sup>-1</sup></div>` 
+    inv[1].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('cosInv')">cos<sup>-1</sup></div>` 
+    inv[2].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('tanInv')">tan<sup>-1</sup></div>` 
+    }
+  
+  
 }

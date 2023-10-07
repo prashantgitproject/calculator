@@ -80,10 +80,18 @@ body{
 .equal{
     background-color: #45c5c5;
     color: black;
+    /* content-visibility: hidden; */
 }
 .equal:hover{
     background-color: #4fdfdf;
 }
+/* .angle{
+color: rgb(246, 255, 0);
+} */
 .textDisable{
-    color: rgb(160 160 160);
+    color: rgb(246, 255, 0);
+    background-color: #5e5e5e;
+}
+.inverse{
+color: rgb(247, 255, 1);
 }
