@@ -19,11 +19,11 @@ body{
 .screenLight{
     background-color: rgb(221, 221, 221);
     color: rgb(0, 0, 0); 
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 5px;
 }
 .screenLight:hover{
-    background-color: rgb(206, 206, 206);
+    background-color: rgb(221, 221, 221);
 }
 
 .input{
@@ -53,30 +53,39 @@ body{
     font-size: 20px;
     background-color: rgb(106 106 106);
     color: rgb(255, 255, 255);
-    /* border: 2px solid white; */
+    
 }
 .cell:hover{
     background-color: rgb(145 145 145);
 }
 .cellLight{
     height: 40px;
-    border-radius: 5px;
-    border: 2px solid black;
+    /* border-radius: 5px; */
+    /* border: 2px solid black; */
     cursor: pointer;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(194 194 194);
     color: rgb(0, 0, 0);
     font-size: 20px;
-    border: 2px solid black
+    /* border: 2px solid black */
 }
 
 .cellLight:hover{
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(174, 174, 174);
+}
+.digits{
+    background-color: #434343;
+}
+.digitsLight{
+    background-color: #9c9c9c;
+}
+.digitsLight:hover{
+    background-color: #afafaf;
 }
 
-.del{
+/* .del{
     width: 58px;
     border-radius: 5px;
-}
+} */
 .equal{
     background-color: #45c5c5;
     color: black;

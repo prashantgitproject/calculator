@@ -8,8 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="calculator.css">
 </head>
-<!-- <body class="" onmousedown="return false" onselectstart="return false"> -->
-<body class="">
+<body class="" onmousedown="return false" onselectstart="return false">
+<!-- <body class=""> -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Navbar</a>
@@ -33,7 +33,7 @@
       </nav>
       
 
-    <div class="container text-center my-5">
+    <div class="container text-center mt-5 ">
       <div class="row justify-content-center">
 
         <div class="screen text-end d-flex align-items-end m-2" style="width: 1000px; height: 100px;">
@@ -41,55 +41,77 @@
             <input class="input" type="text" name="screen" placeholder="0"/>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="row m-2" style="width: 1050px;">
-          <div id="radian" class="angle cell col m-2 py-1 textDisable" onclick="angleChange()">Rad</div>
-          <div id="degree" class="angle cell col m-2 py-1" onclick="angleChange()">Deg</div>
-          <div class=" cell col m-2 py-1" onclick="insert('!')">x!</div>
-          <div class=" cell col m-2 py-1" onclick="insert('&#x28')">(</div> <!-- Hex Code -->
-          <div class=" cell col m-2 py-1" onclick="insert('&#x29')">)</div>
-          <div class=" cell col m-2 py-1 operation">%</div>
-          <div class=" cell m-2 py-1 del" onclick="allClear()">AC</div>
-          <div class=" cell m-2 py-1 del" onclick="clearEntry()">CE</div>
+   <div class="container my-1 text-center ">
+    <div class="row justify-content-center">
+      <div class="row" style="width: 1040px;">
+
+        <div class="col col-12 col-sm-5">
+          <div class="row justify-content-center">
+            <div class="col-3 mx-2">
+              <div id="radian" class="row mb-4 cell py-1  angle textDisable" onclick="angleChange()"><div class="col">Rad</div></div>
+              <div id="inverse" class="row mb-4 cell py-1"   onclick="invFunc()"><div class="col">Inv</div></div>
+              <div class="row mb-4 cell py-1" onclick="insert('π')"><div class="col">π</div></div>
+              <div class="row mb-4 cell py-1" onclick="insert('e')"><div class="col">e</div></div>
+              <div class="row mb-4 cell py-1" onclick="ans()"><div class="col">Ans</div></div>
+            </div>
+            <div class="col-3 mx-2">
+              <div id="degree"  class="angle row mb-4 cell py-1" onclick="angleChange()"><div class="col">Deg</div></div>
+              <div class="row mb-4 cell py-1 inv" onclick="espFunc('sin')"><div class="col">sin</div></div>
+              <div class="row mb-4 cell py-1 inv" onclick="espFunc('cos')"><div class="col">cos</div></div>
+              <div class="row mb-4 cell py-1 inv" onclick="espFunc('tan')"><div class="col">tan</div></div>
+              <div class="row mb-4 cell py-1" onclick="espFunc('e^')"><div class="col">EXP</div></div>
+            </div>
+            <div class="col-3 mx-2">
+              <div class="row mb-4 cell py-1" onclick="insert('!')"><div class="col">x!</div></div>
+              <div class="row mb-4 cell py-1" onclick="espFunc('ln')"><div class="col">ln</div></div>
+              <div class="row mb-4 cell py-1" onclick="espFunc('log')"><div class="col">log</div></div>
+              <div class="row mb-4 cell py-1" onclick="espFunc('√')"><div class="col">√ </div></div>
+              <div class="row mb-4 cell py-1" onclick="insert('^')"><div class="col">^</div></div>
+            </div>
+          </div>
         </div>
-        <div class="row m-2" style="width: 1050px;">
-          <div id="inverse" class=" cell col m-2 py-1" onclick="invFunc()">Inv</div>
-          <div class=" cell col m-2 py-1 inv" onclick="espFunc('sin')">sin</div>
-          <div class=" cell col m-2 py-1" onclick="espFunc('ln')">ln</div>
-          <div class=" cell col m-2 py-1" onclick="insert('7')">7</div>
-          <div class=" cell col m-2 py-1" onclick="insert('8')">8</div>
-          <div class=" cell col m-2 py-1" onclick="insert('9')">9</div>
-          <div class=" cell col m-2 py-1 operation">÷</div>
-        </div>
-        <div class="row m-2" style="width: 1050px;">
-          <div class=" cell col m-2 py-1" onclick="insert('π')">π</div>
-          <div class=" cell col m-2 py-1 inv" onclick="espFunc('cos')">cos</div>
-          <div class=" cell col m-2 py-1" onclick="espFunc('log')">log</div>
-          <div class=" cell col m-2 py-1" onclick="insert('4')">4</div>
-          <div class=" cell col m-2 py-1" onclick="insert('5')">5</div>
-          <div class=" cell col m-2 py-1" onclick="insert('6')">6</div>
-          <div class=" cell col m-2 py-1 operation">×</div>
-        </div>
-        <div class="row m-2" style="width: 1050px;">
-          <div class=" cell col m-2 py-1" onclick="insert('e')">e</div>
-          <div class=" cell col m-2 py-1 inv" onclick="espFunc('tan')">tan</div>
-          <div class=" cell col m-2 py-1" onclick="espFunc('√')">√ </div>
-          <div class=" cell col m-2 py-1" onclick="insert('1')">1</div>
-          <div class=" cell col m-2 py-1" onclick="insert('2')">2</div>
-          <div class=" cell col m-2 py-1" onclick="insert('3')">3</div>
-          <div class=" cell col m-2 py-1 operation">-</div>
-        </div>
-        <div class="row m-2" style="width: 1050px;">
-          <div class=" cell col m-2 py-1" onclick="ans()">Ans</div>
-          <div class=" cell col m-2 py-1" onclick="espFunc('e^')">EXP</div>
-          <div class=" cell col m-2 py-1" onclick="insert('^')">^</div>
-          <div class=" cell col m-2 py-1" onclick="insert('0')">0</div>
-          <div class=" cell col m-2 py-1" onclick="insert('.')">.</div>
-          <div class="equal cell col m-2 py-1" onclick="equal()">=</div>
-          <!-- <div class=" cell col m-2 py-1 operation">+</div> -->
+        
+        <div class="col col-12 col-sm-7">
+          <div class="row justify-content-center">
+            <div class="col mx-2">
+              <div class="row mb-4 cell py-1" onclick="insert('&#x28')"><div class="col">(</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('7')"><div class="col">7</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('4')"><div class="col">4</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('1')"><div class="col">1</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('0')"><div class="col">0</div></div>
+            </div>
+            <div class="col mx-2">
+              <div class="row mb-4 cell py-1" onclick="insert('&#x29')"><div class="col">)</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('8')"><div class="col">8</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('5')"><div class="col">5</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('2')"><div class="col">2</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('.')"><div class="col">.</div></div>
+            </div>
+            <div class="col mx-2">
+              <div class="row mb-4 cell py-1 operation"><div class="col">%</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('9')"><div class="col">9</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('6')"><div class="col">6</div></div>
+              <div class="row mb-4 cell py-1 digits" onclick="insert('3')"><div class="col">3</div></div>
+              <div class="equal row mb-4 cell py-1" onclick="equal()"><div class="col">=</div></div>
+            </div>
+            <div class="col mx-2">
+              <div class="row mb-4">
+                <div class="col-5 me-1 cell ps-1 py-1 del" onclick="allClear()">AC</div>
+                <div class="col-5 ms-1 cell ps-1 py-1 del" onclick="clearEntry()">CE</div>
+              </div>
+              <div class="row mb-4 cell py-1 operation"><div class="col">÷</div></div>
+              <div class="row mb-4 cell py-1 operation"><div class="col">×</div></div>
+              <div class="row mb-4 cell py-1 operation"><div class="col">-</div></div>
+              <div class="row mb-4 cell py-1 operation"><div class="col">+</div></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+   </div>
     
     
 

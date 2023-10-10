@@ -1,14 +1,25 @@
 let cell = document.getElementsByClassName("cell");
-let darkmode = document.getElementById("lightmode");
+let digits = document.getElementsByClassName("digits")
+let lightButton = document.getElementById("lightmode");
 
 //                                 –––––––––––Enabling Light Mode––––––––––––––––
 
-darkmode.addEventListener("click", function(){
+lightButton.addEventListener("click", function(){
+    if(lightButton.textContent == "Light Mode"){
+      lightButton.textContent = "Dark Mode"
+    }
+    else{
+      lightButton.textContent = "Light Mode"
+    }
     document.getElementsByTagName("body")[0].classList.toggle("bodyLight");
     document.getElementsByClassName("screen")[0].classList.toggle("screenLight");
     document.getElementsByClassName("input")[0].classList.toggle("inputLight");
+
     for(let i=0; i<cell.length; i++){
         cell[i].classList.toggle("cellLight");
+    };
+    for(let i=0; i<digits.length; i++){
+      digits[i].classList.toggle("digitsLight");
     };
 });
 
@@ -82,10 +93,10 @@ const espFunc=(func)=>{
     insert("sin-1()")
   }
   else if(func == "cosInv"){
-    insert("cosInv(θ=)")
+    insert("cos-1()")
   }
   else if(func == "tanInv"){
-    insert("tanInv(θ=)")
+    insert("tan-1()")
   }
   else if(func == "ln"){
     insert("ln()")
@@ -326,14 +337,15 @@ let inverse = document.getElementById("inverse");
 const invFunc=()=>{
   inverse.classList.toggle("inverse")
     if(inv[0].textContent.includes("-1")){
-    inv[0].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('sin')">sin</div>` 
-    inv[1].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('cos')">cos</div>` 
-    inv[2].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('tan')">tan</div>` 
+    inv[0].outerHTML = `<div class="row mb-4 cell py-1 inv" onclick="espFunc('sin')"><div class="col">sin</div></div>` 
+    inv[1].outerHTML = `<div class="row mb-4 cell py-1 inv" onclick="espFunc('cos')"><div class="col">cos</div></div>` 
+    inv[2].outerHTML = `<div class="row mb-4 cell py-1 inv" onclick="espFunc('tan')"><div class="col">tan</div></div>` 
+    // inv[2].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('tan')">tan</div>` 
     }
     else{ 
-    inv[0].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('sinInv')">sin<sup>-1</sup></div>` 
-    inv[1].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('cosInv')">cos<sup>-1</sup></div>` 
-    inv[2].outerHTML = `<div class=" cell col m-2 py-1 inv" onclick="espFunc('tanInv')">tan<sup>-1</sup></div>` 
+    inv[0].outerHTML = `<div class="row mb-4 cell py-1 inv" onclick="espFunc('sinInv')"><div class="col">sin<sup>-1</sup></div></div>` 
+    inv[1].outerHTML = `<div class="row mb-4 cell py-1 inv" onclick="espFunc('cosInv')"><div class="col">cos<sup>-1</sup></div></div>` 
+    inv[2].outerHTML = `<div class="row mb-4 cell py-1 inv" onclick="espFunc('tanInv')"><div class="col">tan<sup>-1</sup></div></div>`
     }
   
   
